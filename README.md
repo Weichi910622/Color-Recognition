@@ -4,7 +4,7 @@
 * [Device](#device)
 * [Physical Circuit](#physical-circuit-setup)
 * [Operating Principle](#operating-principle)
-* [Data preprocessing](#data-collection-&-preprocessing)
+* [Data preprocessing](#📊-data-collection-&-preprocessing)
 * [Machine Learning](#machine-learning)
 * [STEPS](#steps)
 
