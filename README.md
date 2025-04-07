@@ -1,6 +1,6 @@
 # Color-Recognition
 - Recognizing 7 Colors with neural network
-- Using three photoresistors to measure light intensity corresponding to RGB values. (Each photoresistor is covered with a translucent filter: red, green, or blue.)
+- Using three photoresistors to measure light intensity corresponding to RGB values. (Each photoresistor is covered with a translucent filter : red, green, or blue.)
 ## Content
 * [Device](#device)
 * [Physical Circuit](#physical-circuit-setup)
