@@ -61,7 +61,7 @@
 
 ## Steps
 
-### 1. Sensor Input via ADC(Collect data and predict)
+### 1. Sensor Input via ADC(Collect data and Predict)
 
 - The RGB sensor (three photoresistors with color filters) captures light intensity.
 - The NUC140’s built-in ADC converts analog signals into digital values (one for each R, G, B channel).
