@@ -55,7 +55,8 @@
     - Compute the error between prediction and target.
     - Propagate the error backward from output to hidden layers.
     - Adjust weights based on the calculated error.
-![image](https://github.com/user-attachments/assets/605e8884-373a-43fe-bd8e-c0caf4cea5cc)\
+![image](https://github.com/user-attachments/assets/cafc43ed-7527-4d56-b658-cb099d3997fb)
+
 
 ## Steps
 
