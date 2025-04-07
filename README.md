@@ -18,7 +18,7 @@
 
 ## Operating Principle
 
-###   1. Forward Propagation➡
+### 1 . Forward Propagation➡
 
 ### 2. Backward Propagation⬅
 
