@@ -4,7 +4,7 @@
 * [Device](#device)
 * [Physical Circuit](#physical-circuit-setup)
 * [Operating Principle](#operating-principle)
-* [Data preprocessing](#📊-data-collection-&-preprocessing)
+* [Data preprocessing](#data-collection-&-preprocessing)
 * [Machine Learning](#machine-learning)
 * [STEPS](#steps)
 
@@ -33,7 +33,7 @@
 - Once trained, the network switches to live mode.
 - Sensor reads RGB → normalize → run prediction → display color result.
 
-## 📊 Data Collection & Preprocessing
+## Data Collection & Preprocessing
 
 - Used three photoresistors with RGB filter papers for ADC conversion.
 - Collected `30 samples` for each of the `7 color classes`.
