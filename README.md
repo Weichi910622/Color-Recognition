@@ -1,5 +1,6 @@
 # Color-Recognition
-
+- Recognizing 7 Colors with neural network
+- Using three photoresistors to measure light intensity corresponding to RGB values. (Each photoresistor is covered with a translucent filter: red, green, or blue.)
 ## Content
 * [Device](#device)
 * [Physical Circuit](#physical-circuit-setup)
@@ -14,6 +15,10 @@
 <img src="https://github.com/user-attachments/assets/f774884e-337a-4af0-b76f-806cf17f2b3a" width="500"/>
 
 ## Physical Circuit Setup
+- Photoresistor
+- Resistor
+- LED
+- PL2302
 <img src="https://github.com/user-attachments/assets/ab2914f6-f724-44c2-b110-3a1aacdc9ba8" width="500"/>
 
 ## Operating Principle
