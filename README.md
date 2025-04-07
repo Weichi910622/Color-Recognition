@@ -5,7 +5,7 @@
 * [Physical Circuit](#physical-circuit-setup)
 * [Operating Principle](#operating-principle)
 * [Data preprocessing](#data-collection-&-preprocessing)
-* [Machine Learning](#machine-learning(with-simple-MLP))
+* [Machine Learning](#machine-learning)
 * [STEPS](#steps)
 
 ## Device
@@ -44,7 +44,8 @@
 - Compute mean and standard deviation for each feature.
 - Normalize data to improve learning efficiency.
 
-## Machine Learning(with simple MLP)
+## Machine Learning
+### With simple MLP
 
 ### **Forward Propagation**:
     - RGB sensor data is normalized and fed into the network.
