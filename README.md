@@ -33,7 +33,7 @@
 - Once trained, the network switches to live mode.
 - Sensor reads RGB → normalize → run prediction → display color result.
 
-## Data Collection & Preprocessing
+## Data Collection and Preprocessing
 
 - Used three photoresistors with RGB filter papers for ADC conversion.
 - Collected `30 samples` for each of the `7 color classes`.
