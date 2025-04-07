@@ -16,7 +16,7 @@
 ## Physical Circuit Setup
 <img src="https://github.com/user-attachments/assets/ab2914f6-f724-44c2-b110-3a1aacdc9ba8" width="500"/>
 
-## ⚙️ Operating Principle
+## Operating Principle
 
 ### 1. ➡Forward Propagation
 
