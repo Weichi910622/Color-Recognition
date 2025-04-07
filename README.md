@@ -5,7 +5,7 @@
 * [Physical Circuit](#physical-circuit-setup)
 * [Operating Principle](#operating-principle)
 * [Data preprocessing](#data-collection-&-preprocessing)
-* [Machine Learning](#machine-learning)
+* [Machine Learning](#machine-learning(with-simple-MLP))
 * [STEPS](#steps)
 
 ## Device
