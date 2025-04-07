@@ -4,7 +4,7 @@
 * [Device](#device)
 * [Physical Circuit](#physical-circuit-setup)
 * [Operating Principle](#operating-principle)
-* [Data preprocessing](#data-collection-&-preprocessing)
+* [Data preprocessing](#data-collection-and-preprocessing)
 * [Machine Learning](#machine-learning)
 * [STEPS](#steps)
 
@@ -18,9 +18,9 @@
 
 ## Operating Principle
 
-### 1. ➡Forward Propagation
+### 1. Forward Propagation➡
 
-### 2. ⬅Backward Propagation
+### 2. Backward Propagation⬅
 
 ### 3. Training Process
 
