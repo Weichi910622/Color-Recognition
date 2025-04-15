@@ -1,86 +1,98 @@
-# Color-Recognition
-- Recognizing 7 Colors with neural network
-- Using three photoresistors to measure light intensity corresponding to RGB values. (Each photoresistor is covered with a translucent filter : red, green, or blue.)
-## Content
-* [Device](#device)
-* [Physical Circuit](#physical-circuit-setup)
-* [Operating Principle](#operating-principle)
-* [Data preprocessing](#data-collection-and-preprocessing)
-* [Machine Learning](#machine-learning)
-* [STEPS](#steps)
+# Color Classification with Neural Network
 
-## Device
+A lightweight embedded system for **classifying seven distinct colors** based on analog light intensity measurements from RGB-filtered photoresistors. Classification is performed using a simple neural network (MLP) running on an **NUC140 microcontroller**.
 
-### [NUC140 V2.0 Development Board](https://www.nuvoton.com/products/microcontrollers/arm-cortex-m0-mcus/nuc140-240-connectivity-series/?__locale=zh_TW)
+---
+
+## Contents
+- [Hardware Platform](#hardware-platform)
+- [Circuit Design](#circuit-design)
+- [System Architecture](#system-architecture)
+- [Data Acquisition & Preprocessing](#data-acquisition--preprocessing)
+- [Neural Network Model](#neural-network-model)
+- [Implementation Workflow](#implementation-workflow)
+
+---
+
+## Hardware Platform
+
+### NUC140 V2.0 Development Board  
+[Official Product Page – Nuvoton](https://www.nuvoton.com/products/microcontrollers/arm-cortex-m0-mcus/nuc140-240-connectivity-series/?__locale=zh_TW)
+
 <img src="https://github.com/user-attachments/assets/f774884e-337a-4af0-b76f-806cf17f2b3a" width="500"/>
 
-## Physical Circuit Setup
-- Photoresistor
-- Resistor
-- LED
-- PL2302
+---
+
+## Circuit Design
+
+**Main Components:**
+- Photoresistors with color filters (Red, Green, Blue)
+- Resistors (for voltage division)
+- Status LED
+- PL2302 USB-to-Serial Converter
+
 <img src="https://github.com/user-attachments/assets/ab2914f6-f724-44c2-b110-3a1aacdc9ba8" width="500"/>
 
-## Operating Principle
+---
 
-### 1. Forward Propagation➡
+## System Architecture
 
-### 2. Backward Propagation⬅
+### Forward Propagation
+- Normalized RGB input flows through the MLP to produce class scores.
 
-### 3. Training Process
+### Backward Propagation
+- Error signal is computed and propagated backward to update weights.
 
-- Load and normalize data, initialize weights.
-- Loop through training cycles with forward and backward passes.
-- Track accuracy and error every few cycles.
+### Training Process
+- Normalize inputs → initialize parameters → train over multiple epochs → monitor performance.
 
-### 4. Real-Time Prediction
+### Real-Time Inference
+- Live sensor readings are normalized and fed into the trained model to predict the current color class.
 
-- Once trained, the network switches to live mode.
-- Sensor reads RGB → normalize → run prediction → display color result.
+---
 
-## Data Collection and Preprocessing
+## Data Acquisition & Preprocessing
 
-- Used three photoresistors with RGB filter papers for ADC conversion.
-- Collected `30 samples` for each of the `7 color classes`.
-- Data was printed and stored via Putty.
+### Sensor and Sampling
+- RGB light intensities are measured using photoresistors with corresponding color filters.
+- Analog signals are digitized via NUC140’s ADC.
 
-### Preprocessing Steps
+### Dataset
+- 30 samples per color
+- 7 color categories
+- Serial data captured via PuTTY terminal
 
-- Compute mean and standard deviation for each feature.
-- Normalize data to improve learning efficiency.
+### Preprocessing Pipeline
+- Compute feature-wise mean and standard deviation
+- Normalize dataset before training
 
-## Machine Learning
-### With simple MLP
+---
 
-### **Forward Propagation**:
-    - RGB sensor data is normalized and fed into the network.
-    - Data flows through hidden layers to the output layer, where each neuron calculates a weighted sum and applies an activation function.
-    - The Sigmoid function maps values to a range between 0 and 1, representing the probability of each color class.
+## Neural Network Model
 
-### **Backward Propagation**:
-    - Compute the error between prediction and target.
-    - Propagate the error backward from output to hidden layers.
-    - Adjust weights based on the calculated error.
+### Architecture
+- Simple MLP with one or more hidden layers
+
+### Activation & Output
+- Sigmoid activation on output layer for probability distribution across 7 classes
+
+### Learning Mechanism
+- Error is minimized using backpropagation and weight updates based on gradient descent
+
 <img src="https://github.com/user-attachments/assets/cafc43ed-7527-4d56-b658-cb099d3997fb" width="300"/>
 
+---
 
-## Steps
+## Implementation Workflow
 
-### 1. Sensor Input via ADC(Collect data and Predict)
+### 1. Sensor Input & ADC Conversion
+- RGB light intensity is converted into digital signals
+- Triggered by `ADC_ADF_INT` interrupt
 
-- The RGB sensor (three photoresistors with color filters) captures light intensity.
-- The NUC140’s built-in ADC converts analog signals into digital values (one for each R, G, B channel).
-- A complete scan is triggered and controlled via interrupt flag (`ADC_ADF_INT`).
+### 2. Data Communication (UART)
+- Transmit ADC results to PC during training phase
+- Use serial terminal (e.g., PuTTY) for real-time logging
 
-### 2. Data Transmission via UART
-
-- ADC results are sent to the PC via UART (serial communication).
-- During data collection, the PC receives and logs sensor readings using tools like PuTTY.
-- After training, the MCU operates independently in prediction mode, displaying results locally.
-
-### 3. Neural Network Inference (MLP)
-
-
-
-
-
+### 3. On-Device Inference
+- Once trained, model is deployed to the MCU for standalone operation
+- Color classification runs in real time
