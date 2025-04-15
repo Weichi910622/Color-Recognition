@@ -1,16 +1,16 @@
 # Color Classification with Neural Network
 
-A lightweight embedded system for **classifying seven distinct colors** based on analog light intensity measurements from RGB-filtered photoresistors. Classification is performed using a simple neural network (MLP) running on an **NUC140 microcontroller**.
+This project implements a lightweight embedded system that classifies seven different colors using light intensity readings from photoresistors covered with red, green, and blue filter sheets. A simple Multi-Layer Perceptron (MLP) neural network is used as the classification model, running on the **NUC140 microcontroller**.
 
 ---
 
-## Contents
+## Table of Contents
 - [Hardware Platform](#hardware-platform)
 - [Circuit Design](#circuit-design)
 - [System Architecture](#system-architecture)
-- [Data Acquisition & Preprocessing](#data-acquisition--preprocessing)
+- [Data Collection & Preprocessing](#data-collection--preprocessing)
 - [Neural Network Model](#neural-network-model)
-- [Implementation Workflow](#implementation-workflow)
+- [Implementation Steps](#implementation-steps)
 
 ---
 
@@ -26,10 +26,16 @@ A lightweight embedded system for **classifying seven distinct colors** based on
 ## Circuit Design
 
 **Main Components:**
-- Photoresistors with color filters (Red, Green, Blue)
-- Resistors (for voltage division)
-- Status LED
-- PL2302 USB-to-Serial Converter
+- Photoresistors with red, green, and blue filters
+- Voltage divider resistors
+- Illumination LED (acts as active light source for reflection)
+- PL2302 USB to UART module
+
+**Sensing Design:**
+- An LED provides active lighting and shines on the surface of the object being measured.
+- The reflected light passes through a colored filter (glass or film) and reaches the corresponding photoresistor (R/G/B).
+- Each photoresistor detects the reflected light intensity and converts it to an analog voltage.
+- The voltage is divided and sent to the microcontroller’s ADC for digital conversion.
 
 <img src="https://github.com/user-attachments/assets/ab2914f6-f724-44c2-b110-3a1aacdc9ba8" width="500"/>
 
@@ -38,61 +44,61 @@ A lightweight embedded system for **classifying seven distinct colors** based on
 ## System Architecture
 
 ### Forward Propagation
-- Normalized RGB input flows through the MLP to produce class scores.
+- Normalized RGB input is passed through the MLP to calculate the prediction probabilities.
 
 ### Backward Propagation
-- Error signal is computed and propagated backward to update weights.
+- The error between the prediction and actual target is computed and propagated backward to update the weights.
 
-### Training Process
-- Normalize inputs → initialize parameters → train over multiple epochs → monitor performance.
+### Training Flow
+- Normalize input → initialize parameters → iterate training → monitor accuracy and loss
 
 ### Real-Time Inference
-- Live sensor readings are normalized and fed into the trained model to predict the current color class.
+- Read RGB input → normalize → feed into MLP → display color classification result
 
 ---
 
-## Data Acquisition & Preprocessing
+## Data Collection & Preprocessing
 
-### Sensor and Sampling
-- RGB light intensities are measured using photoresistors with corresponding color filters.
-- Analog signals are digitized via NUC140’s ADC.
+### Sensing and Sampling
+- RGB-filtered photoresistors measure reflected light intensity
+- The analog signal is converted via the NUC140's ADC
 
 ### Dataset
 - 30 samples per color
-- 7 color categories
-- Serial data captured via PuTTY terminal
+- 7 total color categories
+- Data logged through serial interface using PuTTY
 
-### Preprocessing Pipeline
-- Compute feature-wise mean and standard deviation
-- Normalize dataset before training
+### Preprocessing Steps
+- Compute mean and standard deviation per feature
+- Normalize all data to improve model performance
 
 ---
 
 ## Neural Network Model
 
 ### Architecture
-- Simple MLP with one or more hidden layers
+- A basic Multi-Layer Perceptron (MLP) with input, hidden, and output layers
 
-### Activation & Output
-- Sigmoid activation on output layer for probability distribution across 7 classes
+### Activation and Output
+- The output layer uses the Sigmoid function to estimate class probabilities
 
-### Learning Mechanism
-- Error is minimized using backpropagation and weight updates based on gradient descent
+### Learning Process
+- Uses backpropagation to compute gradients and updates weights via gradient descent
 
 <img src="https://github.com/user-attachments/assets/cafc43ed-7527-4d56-b658-cb099d3997fb" width="300"/>
 
 ---
 
-## Implementation Workflow
+## Implementation Steps
 
-### 1. Sensor Input & ADC Conversion
-- RGB light intensity is converted into digital signals
-- Triggered by `ADC_ADF_INT` interrupt
+### 1. Sensor Input and ADC Conversion
+- RGB sensor reads analog voltages corresponding to light intensities
+- `ADC_ADF_INT` interrupt flag is used to trigger the conversion process
 
-### 2. Data Communication (UART)
-- Transmit ADC results to PC during training phase
-- Use serial terminal (e.g., PuTTY) for real-time logging
+### 2. UART Data Transmission
+- During training, ADC results are sent to a PC via UART
+- Data is captured using PuTTY or other terminal software
 
-### 3. On-Device Inference
-- Once trained, model is deployed to the MCU for standalone operation
-- Color classification runs in real time
+### 3. On-Chip Real-Time Inference
+- After training, the model is deployed on the MCU
+- The system runs standalone and performs real-time color prediction
